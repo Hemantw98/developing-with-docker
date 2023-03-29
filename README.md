@@ -1,11 +1,26 @@
-## demo app - developing with Docker
+## Developing with Docker
 
-This demo app shows a simple user profile app set up using 
+This repository demonstrates the use of docker for local development for Node.js application plus integrating it with Mongodb and Mongoexpress conatiners.
 - index.html with pure js and css styles
 - nodejs backend with express module
 - mongodb for data storage
 
 All components are docker-based
+
+### Install docker and start Mongodb container
+
+Step 1: Install Docker on local machine. We can download it from the official Docker website: https://www.docker.com/get-started
+
+step 2: Install the MongoDB image from the Docker Hub repository by running the following command in terminal:
+
+    docker pull mongo
+
+step 3 : Start a MongoDB container by running the following command in terminal:
+
+    docker run -d -p 27017:27017 --name mongodb mongo
+    
+ Note: This above command starts a MongoDB container in detached mode (-d), maps the container's port 27017 to your local port 27017 (-p 27017:27017), and gives the container a name (--name mongodb).   
+
 
 ### With Docker
 
@@ -40,33 +55,3 @@ Step 6: Start your nodejs application locally - go to `app` directory of project
 Step 7: Access you nodejs application UI from browser
 
     http://localhost:3000
-
-### With Docker Compose
-
-#### To start the application
-
-Step 1: start mongodb and mongo-express
-
-    docker-compose -f docker-compose.yaml up
-    
-_You can access the mongo-express under localhost:8080 from your browser_
-    
-Step 2: in mongo-express UI - create a new database "my-db"
-
-Step 3: in mongo-express UI - create a new collection "users" in the database "my-db"       
-    
-Step 4: start node server 
-
-    cd app
-    npm install
-    node server.js
-    
-Step 5: access the nodejs application from browser 
-
-    http://localhost:3000
-
-#### To build a docker image from the application
-
-    docker build -t my-app:1.0 .       
-    
-The dot "." at the end of the command denotes location of the Dockerfile.
